@@ -1,7 +1,7 @@
 // index.jsx
 import React from "react";
 import MainLayout from "../layout/MainLayout";
-import MainPage from "../pages/Main";
+import MainPage from "../pages/MainPage";
 
 const routes = [
   {
