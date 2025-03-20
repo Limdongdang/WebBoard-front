@@ -5,9 +5,12 @@ import { Chessboard } from 'react-chessboard';
 const MyChessBoard: React.FC = () => {
   const [game, setGame] = useState(new Chess());
   const [myColor, setMyColor] = useState<"white" | "black">("white");
+  const [highlightedSquares, setHighlightedSquares] = useState<{ [key: string]: React.CSSProperties }>({});
 
   function onDrop(sourceSquare: Square, targetSquare: Square) {
     const gameCopy = new Chess(game.fen());
+
+    setHighlightedSquares({});
     
     const validMoves = gameCopy.moves({ square: sourceSquare, verbose: true });
     const isValidMove = validMoves.some(
@@ -40,6 +43,20 @@ const MyChessBoard: React.FC = () => {
     }
   }
 
+  function onPieceClick(piece: string, square: Square) {
+    const validMoves = game.moves({ square, verbose: true });
+    const highlights: { [key: string]: React.CSSProperties } = {};
+    
+    validMoves.forEach((move) => {
+      if (move.to) {
+        highlights[move.to] = { background: "radial-gradient(circle,rgba(38, 88, 39, 0.64) 20%, transparent 25%)" };
+      }
+    });
+    console.log("highlights:", highlights);
+  
+    setHighlightedSquares(highlights);
+  }
+
   return (
     <div>
       <Chessboard 
@@ -50,6 +67,9 @@ const MyChessBoard: React.FC = () => {
        areArrowsAllowed={true}
        arePremovesAllowed={true}
        allowDragOutsideBoard={false}
+       onPieceClick={onPieceClick}
+       // 테스트 용 css 바로 넣기
+       customSquareStyles={highlightedSquares}
       />
     </div>
   );
