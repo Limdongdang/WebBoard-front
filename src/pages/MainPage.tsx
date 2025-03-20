@@ -19,9 +19,15 @@ const MainPage: React.FC = () => {
   return (
     <div css={containerStyle}>
       <div style={{width: "80vh"}}>
-        <div style={{backgroundColor: "#e0e0e0"}}>상대</div>
+        <div style={{backgroundColor: "#e0e0e0", display: "flex", justifyContent: "space-between"}}>
+          <div>상대</div>
+          <div>타이머</div>
+        </div>
         <MyChessBoard/>
-        <div style={{backgroundColor: "#e0e0e0"}}>나</div>
+        <div style={{backgroundColor: "#e0e0e0", display: "flex", justifyContent: "space-between"}}>
+          <div>나</div>
+          <div>타이머</div>
+        </div>
       </div>
       <div css={sidebarStyle}>
         <div style={{ backgroundColor: "#e0e0e0", marginBottom: "10px"}}>
@@ -30,7 +36,6 @@ const MainPage: React.FC = () => {
         <div style={{ backgroundColor: "#e0e0e0"}}>
           채팅창
         </div>
-        
       </div>
     </div>
   )
