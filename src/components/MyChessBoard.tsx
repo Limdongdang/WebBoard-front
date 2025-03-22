@@ -97,10 +97,10 @@ const MyChessBoard: React.FC = () => {
        boardOrientation={myColor === "w" ? "white" : "black"}
        areArrowsAllowed={true}
        arePremovesAllowed={true}
-       allowDragOutsideBoard={false}
        onPieceClick={onPieceClick}
        onPieceDragBegin={onPieceClick}
        customSquareStyles={highlightedSquares}
+       isDraggablePiece={(piece) => { return piece.piece[0] === myColor }}
       />
       <button onClick={() => setMyColor(myColor === "w" ? "b" : "w")}>
         색 변경
